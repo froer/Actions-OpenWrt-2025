@@ -128,6 +128,8 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 sed -i 's#GO_PKG_TARGET_VARS.*# #g' feeds/packages/utils/v2dat/Makefile
 
+# 修复 v2dat 交叉编译变量冲突（同时兼容 feeds 和 package 目录下的 v2dat）
+find package/ feeds/ -path "*/v2dat/Makefile" -exec sed -i 's#GO_PKG_TARGET_VARS.*# #g' {} +
 
 # 官方版
 # mkdir -p feeds/packages/net/zerotier/files/etc/config
