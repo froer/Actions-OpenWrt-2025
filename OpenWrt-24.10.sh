@@ -125,8 +125,9 @@ sed -i '1i /etc/init.d/ddns start' package/base-files/files/etc/rc.local
 
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-sed -i 's#GO_PKG_TARGET_VARS.*# #g' feeds/packages/utils/v2dat/Makefile
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+sed -i 's#GO_PKG_TARGET_VARS.*# #g' feeds/packages/utils/v2dat/Makefile
+
 
 # 官方版
 # mkdir -p feeds/packages/net/zerotier/files/etc/config
