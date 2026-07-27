@@ -154,6 +154,9 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
+		  # 【关键补丁】在这里彻底解决 v2dat / mosdns 编译报错
+        find package/ feeds/ -path "*/v2dat/Makefile" -exec sed -i 's#GO_PKG_TARGET_VARS.*# #g' {} +
+
     - name: 强制启用 ccache
       run: |
         sed -i '/CONFIG_CCACHE/d' openwrt/.config
