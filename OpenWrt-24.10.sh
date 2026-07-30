@@ -123,13 +123,19 @@ sed -i '1i /etc/init.d/ddns start' package/base-files/files/etc/rc.local
 # Modify default theme（FROM uci-theme-bootstrap CHANGE TO luci-theme-material）
 # sed -i 's/luci-theme-openwrt-2020/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
-rm -rf feeds/packages/net/v2ray-geodata
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-sed -i 's#GO_PKG_TARGET_VARS.*# #g' feeds/packages/utils/v2dat/Makefile
+#2026/7/30删除
+#rm -rf feeds/packages/net/v2ray-geodata
+#git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+#git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+#sed -i 's#GO_PKG_TARGET_VARS.*# #g' feeds/packages/utils/v2dat/Makefile
+
+rm -rf feeds/packages/lang/golang
+git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
+rm -rf feeds/packages/net/mosdns
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 
 # 修复 v2dat 交叉编译变量冲突（同时兼容 feeds 和 package 目录下的 v2dat）
-find package/ feeds/ -path "*/v2dat/Makefile" -exec sed -i 's#GO_PKG_TARGET_VARS.*# #g' {} +
+#find package/ feeds/ -path "*/v2dat/Makefile" -exec sed -i 's#GO_PKG_TARGET_VARS.*# #g' {} +
 
 # 官方版
 # mkdir -p feeds/packages/net/zerotier/files/etc/config
